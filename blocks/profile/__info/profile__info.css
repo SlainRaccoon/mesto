@@ -1,6 +1,6 @@
 .profile__info {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: no-wrap;
   justify-content: start;
   align-items: baseline;
 
