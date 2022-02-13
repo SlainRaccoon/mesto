@@ -1,4 +1,4 @@
-.popup__save {
+.popup__save-btn {
   line-height: 1;
   font-size: 14px;
   font-weight: 400;
@@ -10,4 +10,9 @@
   border-radius: 2px;
   cursor: pointer;
   min-height: 50px;
+  transition: opacity .3s ease-in;
+}
+
+.popup__save-btn:hover {
+  opacity: .8;
 }
