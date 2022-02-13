@@ -5,9 +5,8 @@ let nameInput = document.querySelector('.popup__text_type_name');
 let jobInput = document.querySelector('.popup__text_type_job');
 let title = document.querySelector('.profile__name');
 let subtitle = document.querySelector('.profile__subtitle');
-
-const editButton = document.querySelector('.profile__edit-btn');
-const closeButton = document.querySelector('.popup__close-btn');
+let editButton = document.querySelector('.profile__edit-btn');
+let closeButton = document.querySelector('.popup__close-btn');
 
 
 //функция открытия и закрытия попапа
