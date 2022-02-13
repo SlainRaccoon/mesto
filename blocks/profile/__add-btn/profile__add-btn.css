@@ -1,0 +1,39 @@
+.profile__add-btn {
+  margin-top: 36px;
+  width: 282px;
+  height: 50px;
+  background-image: url(../../../images/pluse1.svg);
+  background-color: #0000;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: opacity .3s linear;
+}
+
+.profile__add-btn:hover {
+  opacity: .6;
+}
+
+.profile__add-btn:before {
+  content: "+";
+  color: #fff;
+  display: flex;
+  height: 47px;
+  align-items: center;
+  justify-content: space-around;
+  font-size: xx-large;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+@media screen and (min-width: 768px) {
+  .profile__add-btn {
+    width: 150px;
+  }
+
+  .profile__add-btn:before {
+    font-size: xxx-large;
+  }
+}
