@@ -2,7 +2,7 @@
 let popup = document.querySelector('.popup');
 let formElement = document.querySelector('.popup__info');
 let nameInput = document.querySelector('.popup__text_type_name');
-let jodInput = document.querySelector('.popup__text_type_job');
+let jobInput = document.querySelector('.popup__text_type_job');
 let title = document.querySelector('.profile__name');
 let subtitle = document.querySelector('.profile__subtitle');
 
