@@ -6,6 +6,7 @@
   background-color: #0000;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 6%;
   border: 2px solid #fff;
   border-radius: 2px;
   box-sizing: border-box;
@@ -17,23 +18,9 @@
   opacity: .6;
 }
 
-.profile__add-btn:before {
-  content: "+";
-  color: #fff;
-  display: flex;
-  height: 47px;
-  align-items: center;
-  justify-content: space-around;
-  font-size: xx-large;
-  font-family: 'Courier New', Courier, monospace;
-}
-
 @media screen and (min-width: 768px) {
   .profile__add-btn {
+    background-size: 17%;
     width: 150px;
-  }
-
-  .profile__add-btn:before {
-    font-size: xxx-large;
   }
 }

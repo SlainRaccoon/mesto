@@ -16,3 +16,9 @@
 .popup__save-btn:hover {
   opacity: .8;
 }
+
+@media screen and (min-width: 768px) {
+  .popup__save-btn {
+    font-size: 18px;
+  }
+}
