@@ -10,13 +10,11 @@
   .profile__container {
     flex-direction: row;
     width: 95%;
-    margin: 40px auto 0;
   }
 }
 
 @media screen and (min-width: 890px) {
   .profile__container {
     width: 100%;
-    margin: 40px auto 0;
   }
 }

@@ -1,7 +1,6 @@
 .gallery__info {
-  padding: 25px 21px 31px;
+  padding: 25px 21px 25px;
   width: 246px;
-  height: 23px;
   display: flex;
   justify-content: space-between;
   background-color: #fff;
