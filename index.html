@@ -34,10 +34,10 @@
   </main>
 
   <footer class="footer">
-    <p class="footer__copyright">2022 &#169; Mesto Russia</p>
+    <p class="footer__copyright">2022 &#169; Evgen Khafizov</p>
   </footer>
 
-  <div class="popup popup_edit">
+  <div class="popup popup-edit">
     <div class="popup__block">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form popup__form_type_edit" name="form-edit">
@@ -49,21 +49,21 @@
     </div>
   </div>
 
-  <div class="popup popup_place">
+  <div class="popup popup-place">
     <div class="popup__block">
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form popup__form_type_place" name="form-place">
+      <form class="popup__form popup__form_type_place" name="form-place" id="add-place">
         <input class="popup__text popup__text_type_place" type="text" name="place" placeholder="Название">
         <input class="popup__text popup__text_type_link" type="text" name="link" placeholder="Ссылка на картинку">
         <button class="popup__save-btn popup__save-btn_type_place" type="submit">Создать</button> 
       </form>
-      <button class="popup__close-btn popup__close-btn_type_place" type="button" aria-label="close"></button>
+      <button class="popup__close-btn" type="button" aria-label="close"></button>
     </div>
   </div>
 
-  <div class="popup popup_view">
+  <div class="popup popup-view">
     <figure class="popup__image">
-      <img class="popup__picture" alt="#">
+      <img class="popup__picture" alt=".">
       <figcaption>
         <p class="popup__caption"></p>
       </figcaption>
@@ -84,7 +84,6 @@
     </article>
   </template>
 
-  <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 
 </body>
