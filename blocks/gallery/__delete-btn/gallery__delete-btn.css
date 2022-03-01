@@ -12,6 +12,7 @@
   background-size: cover;
   cursor: pointer;
   transition: opacity .3s ease-in;
+  z-index: 2;
 }
 
 .gallery__delete-btn:hover {
