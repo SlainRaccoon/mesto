@@ -32,7 +32,7 @@ const imageCloseButton = imageOpenPopup.querySelector('.popup__close-btn');
 const initialCards = [
   {
     name: 'Камчатка',
-    link: '../../images/kamchatka.jpg'
+    link: '../images/kamchatka.jpg'
   },
   {
     name: 'Карелия',
