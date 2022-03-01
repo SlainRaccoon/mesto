@@ -1,3 +1,8 @@
 .gallery__like-btn_active {
   background: url(../../../../images/heartblack.svg);
+  min-width: 22px;
+  height: 19px;
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
