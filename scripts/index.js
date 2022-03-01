@@ -31,28 +31,28 @@ const imageCloseButton = imageOpenPopup.querySelector('.popup__close-btn');
 //массив карточек
 const initialCards = [
   {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
     name: 'Камчатка',
-    link: '/images/kamchatka.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-    name: 'Карелия',
-    link: '../../images/karelia.jpg'
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-    name: 'Мурманск',
-    link: '../../images/murmansk.jpg'
-  },
-  {
-    name: 'Санкт-Петербург',
-    link: '../../images/piter.jpg'
-  },
-  {
-    name: 'Тулиновка',
-    link: '../../images/tulinovka.jpg'
-  },
-  {
-    name: 'Ольхон',
-    link: '../../images/olhon.jpg'
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
 
