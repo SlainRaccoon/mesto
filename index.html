@@ -9,9 +9,11 @@
 </head>
 
 <body class="root">
+
   <header class="header">
     <img class="header__logo" src="./images/logo.svg" alt="Логотип">
   </header>
+
   <main class="content">
     <section class="profile">
       <div class="profile__container">
@@ -24,60 +26,21 @@
         <button class="profile__add-btn" type="button" aria-label="add"></button>
       </div>
     </section>
+
     <section class="gallery">
-      <ul class="gallery__list">
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/kamchatka.jpg" alt="Камчатка">
-          <div class="gallery__info">
-            <h2 class="gallery__title">Полуостров Камчатка</h2>
-            <button class="gallery__like" type="button" aria-label="like"></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/karelia.jpg" alt="Карелия">
-          <div class="gallery__info">
-            <h2 class="gallery__title">Карелия</h2>
-            <button class="gallery__like" type="button" aria-label="like"></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/murmansk.jpg" alt="Мурманск">
-          <div class="gallery__info">
-            <h2 class="gallery__title">Мурманск</h2>
-            <button class="gallery__like" type="button" aria-label="like"></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/piter.jpg" alt="Санкт-Петербург">
-          <div class="gallery__info">
-            <h2 class="gallery__title">Санкт-Петербург</h2>
-            <button class="gallery__like" type="button" aria-label="like"></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/sochi.jpg" alt="Сочи">
-          <div class="gallery__info">
-            <h2 class="gallery__title">Сочи</h2>
-            <button class="gallery__like" type="button" aria-label="like"></button>
-          </div>
-        </li>
-        <li class="gallery__item">
-          <img class="gallery__image" src="./images/olhon.jpg" alt="Ольхон">
-          <div class="gallery__info">
-            <h2 class="gallery__title">Ольхон</h2>
-            <button class="gallery__like" type="button" aria-label="like"></button>
-          </div>
-        </li>
-      </ul>
+
     </section>
+
   </main>
+
   <footer class="footer">
     <p class="footer__copyright">2022 &#169; Mesto Russia</p>
   </footer>
-  <div class="popup">
+
+  <div class="popup popup_edit">
     <div class="popup__block">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__info" name="info">
+      <form class="popup__form popup__form_type_edit" name="form-edit">
         <input class="popup__text popup__text_type_name" type="text" name="name" value="Жак-Ив Кусто">
         <input class="popup__text popup__text_type_job" type="text" name="job" value="Исследователь океана">
         <button class="popup__save-btn" type="submit">Сохранить</button>
@@ -85,7 +48,45 @@
       <button class="popup__close-btn" type="button" aria-label="close"></button>
     </div>
   </div>
+
+  <div class="popup popup_place">
+    <div class="popup__block">
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form popup__form_type_place" name="form-place">
+        <input class="popup__text popup__text_type_place" type="text" name="place" placeholder="Название">
+        <input class="popup__text popup__text_type_link" type="text" name="link" placeholder="Ссылка на картинку">
+        <button class="popup__save-btn popup__save-btn_type_place" type="submit">Создать</button> 
+      </form>
+      <button class="popup__close-btn popup__close-btn_type_place" type="button" aria-label="close"></button>
+    </div>
+  </div>
+
+  <div class="popup popup_view">
+    <figure class="popup__image">
+      <img class="popup__picture" alt="#">
+      <figcaption>
+        <p class="popup__caption"></p>
+      </figcaption>
+      <button class="popup__close-btn" type="button" aria-label="close"></button>
+    </figure>
+  </div>
+
+  <template id="cards">
+    <article class="gallery__list">
+      <figure class="gallery__item">
+        <button class="gallery__delete-btn" type="button" aria-label="delete"></button>
+        <img class="gallery__image" src="." alt=".">
+        <figcaption class="gallery__info">
+          <h2 class="gallery__title"></h2>
+          <button class="gallery__like-btn" type="button" aria-label="like"></button>
+        </figcaption>
+      </figure>
+    </article>
+  </template>
+
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
+
 </body>
 
 </html>
