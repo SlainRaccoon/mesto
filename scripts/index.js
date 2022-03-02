@@ -1,6 +1,5 @@
 /** elements buttons */
 const formEdit = document.querySelector('.popup__form_type_edit');
-const formPlace = document.querySelector('.popup__form_type_place');
 
 /** edit profile */
 const editButton = document.querySelector('.profile__edit-btn');
