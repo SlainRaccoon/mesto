@@ -52,10 +52,11 @@
   <div class="popup popup-place">
     <div class="popup__block">
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form popup__form_type_place" name="form-place" id="add-place">
-        <input class="popup__text popup__text_type_place" type="text" name="place" placeholder="Название">
-        <input class="popup__text popup__text_type_link" type="text" name="link" placeholder="Ссылка на картинку">
-        <button class="popup__save-btn popup__save-btn_type_place" type="submit">Создать</button> 
+      <form class="popup__form popup__form_type_place" name="form-place"">
+        <input class=" popup__text popup__text_type_place" type="text" name="place" placeholder="Название" value="">
+        <input class="popup__text popup__text_type_link" type="text" name="link" placeholder="Ссылка на картинку"
+          value="">
+        <button class="popup__save-btn popup__save-btn_type_place" type="submit">Создать</button>
       </form>
       <button class="popup__close-btn" type="button" aria-label="close"></button>
     </div>
@@ -84,6 +85,7 @@
     </article>
   </template>
 
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 
 </body>
