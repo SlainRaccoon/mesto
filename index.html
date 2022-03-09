@@ -18,11 +18,11 @@
   <main class="content">
     <section class="profile">
       <div class="profile__container">
-        <img class="profile__image" src="./images/jac-iv-kusto.jpg" alt="Фото Жак-Ив Кусто">
+        <img class="profile__image" src="./images/mandalorian.jpg" alt="Фото Жак-Ив Кусто">
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name">Mandalorian</h1>
           <button class="profile__edit-btn" type="button" aria-label="edit"></button>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle">Охотник за головами</p>
         </div>
         <button class="profile__add-btn" type="button" aria-label="add"></button>
       </div>
@@ -41,9 +41,11 @@
   <div class="popup popup-edit">
     <div class="popup__block">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form popup__form_type_edit" name="form-edit">
-        <input class="popup__text popup__text_type_name" type="text" name="name" value="Жак-Ив Кусто">
-        <input class="popup__text popup__text_type_job" type="text" name="job" value="Исследователь океана">
+      <form class="popup__form popup__form_type_edit" name="form-edit" id="form-profile-edit">
+        <input class="popup__text popup__text_type_name" type="text" name="name" value="Mandalorian" placeholder="Имя">
+        <span class="popup__input-error nameInput-error"></span>
+        <input class="popup__text popup__text_type_job" type="text" name="job" value="Охотник за головами" placeholder="О себе">
+        <span class="popup__input-error jobInput-error"></span>
         <button class="popup__save-btn" type="submit">Сохранить</button>
       </form>
       <button class="popup__close-btn" type="button" aria-label="close"></button>
@@ -53,10 +55,11 @@
   <div class="popup popup-place">
     <div class="popup__block">
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form popup__form_type_place" name="form-place">
+      <form class="popup__form popup__form_type_place" name="form-place" id="form-place-add">
         <input class=" popup__text popup__text_type_place" type="text" name="place" placeholder="Название" value="">
-        <input class="popup__text popup__text_type_link" type="text" name="link" placeholder="Ссылка на картинку"
-          value="">
+        <span class="popup__input-error placeInput-error"></span>
+        <input class="popup__text popup__text_type_link" type="text" name="link" placeholder="Ссылка на картинку" value="">
+        <span class="popup__input-error linkInput-error"></span>
         <button class="popup__save-btn popup__save-btn_type_place" type="submit">Создать</button>
       </form>
       <button class="popup__close-btn" type="button" aria-label="close"></button>

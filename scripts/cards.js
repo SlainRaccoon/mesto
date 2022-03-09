@@ -1,27 +1,27 @@
 /** massiv cards */
 const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: 'Набу',
+    link: 'https://kartinkin.net/uploads/posts/2021-04/thumbs/1618103152_7-p-planeta-nabu-zvezdnie-voini-fentezi-10.jpg'
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    name: 'Джакку',
+    link: 'https://i.pinimg.com/736x/2b/d7/c0/2bd7c01c02784322f682c67b7040f59f--star-destroyer-star-wars-action-figures.jpg'
   },
   {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    name: 'Арвала 7',
+    link: 'https://www.jedipedia.net/w/images/8/81/Arvala7.jpg'
   },
   {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: 'Корусант',
+    link: 'https://avatars.mds.yandex.net/get-zen_doc/4078437/pub_60450121665e4413f3e35e63_604502aa44edc6668121f0e8/scale_1200'
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: 'Альдераан',
+    link: 'https://i.pinimg.com/originals/bc/1c/46/bc1c464836771a88349a73a234fe7f3e.jpg'
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    name: 'Мустафар',
+    link: 'https://cutewallpaper.org/21/mustafar-background/Lava-Planet-Flytrough-Star-Wars-Mustafar-3D-Animation.jpg'
   }
 ];
