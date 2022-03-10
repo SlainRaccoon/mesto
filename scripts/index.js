@@ -72,12 +72,21 @@ function deleteCard(evt) {
   evt.target.closest('.gallery__list').remove();
 }
 
-/** function poend and close popup */
+/** function open and close popup */
 function openPopup(anyPopup) {
   anyPopup.classList.add('popup_opened');
 }
 const closePopup = function (anyPopup) {
   anyPopup.classList.remove('popup_opened');
+}
+
+/** function close popup on overlay */
+function closePopupOverlay(anyPopup) {
+  return function(evt) {
+    if (evt.target === evt.currentTarget) {
+      closePopup(anyPopup);
+    }
+  }
 }
 
 /** function open edit profile */
@@ -120,3 +129,7 @@ closePlacePopup.addEventListener('click', () => closePopup(popupPlace));
 cardAddFormElement.addEventListener('submit', handlerPlaceFormSubmit);
 
 imageCloseButton.addEventListener('click', () => closePopup(imageOpenPopup));
+
+popupEdit.addEventListener('click', closePopupOverlay(popupEdit));
+popupPlace.addEventListener('click', closePopupOverlay(popupPlace));
+imageOpenPopup.addEventListener('click', closePopupOverlay(imageOpenPopup));
