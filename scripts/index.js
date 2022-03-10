@@ -75,15 +75,25 @@ function deleteCard(evt) {
 /** function open and close popup */
 function openPopup(anyPopup) {
   anyPopup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePoppEscBtn(anyPopup)); /** add listener Esc button */
 }
 const closePopup = function (anyPopup) {
   anyPopup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePoppEscBtn(anyPopup)); /** remove listener Esc button */
 }
 
 /** function close popup on overlay */
 function closePopupOverlay(anyPopup) {
   return function(evt) {
     if (evt.target === evt.currentTarget) {
+      closePopup(anyPopup);
+    }
+  }
+}
+/** function close popup on Esc */
+function closePoppEscBtn(anyPopup) {
+  return function(evt) {
+    if (evt.key === 'Escape') {
       closePopup(anyPopup);
     }
   }
