@@ -3,6 +3,8 @@
   flex-direction: column;
   justify-content: center;
   margin: 0 22px 25px;
+  line-height: 1.15;
+  font-size: 14px;
 }
 
 @media screen and (min-width: 768px) {
