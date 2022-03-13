@@ -4,22 +4,22 @@ const formPlace = document.querySelector('#form-place');
 const formElementSubmitButton = formElement.querySelector('.popup__save-btn');
 
 /** edit profile */
-const editButton = document.querySelector('.profile__edit-btn');
+const profileButton = document.querySelector('.profile__edit-btn');
 const popupEdit = document.querySelector('.popup-edit');
-const closeEditPopup = popupEdit.querySelector('.popup__close-btn');
+const profilePopupClose = popupEdit.querySelector('.popup__close-btn');
 
 /** new place */
 const placeButton = document.querySelector('.profile__add-btn');
 const popupPlace = document.querySelector('.popup-place');
 const cardAddFormElement = document.querySelector('#form-place');
-const closePlacePopup = popupPlace.querySelector('.popup__close-btn');
+const placePopupClose = popupPlace.querySelector('.popup__close-btn');
 const cardAddFormSubmitButton = cardAddFormElement.querySelector('.popup__save-btn');
 
 /** inputs edit profile */
 const nameInput = document.querySelector('#name-input');
 const jobInput = document.querySelector('#job-input');
-const editTitle = document.querySelector('.profile__name');
-const editSubtitle = document.querySelector('.profile__subtitle');
+const titleProfile = document.querySelector('.profile__name');
+const subtitleProfile = document.querySelector('.profile__subtitle');
 
 /** popup zoom image */
 const imageOpenPopup = document.querySelector('.popup-view');
@@ -80,20 +80,20 @@ function deleteCard(evt) {
 function openPopup(anyPopup) {
   anyPopup.classList.add('popup_opened');
   /** add listener Esc button */
-  document.addEventListener('keydown', closePoppEscBtn(anyPopup)); 
+  document.addEventListener('keydown', closePoppEscBtn(anyPopup));
 };
 
 const closePopup = function (anyPopup) {
   anyPopup.classList.remove('popup_opened');
   /** remove listener Esc button */
-  document.removeEventListener('keydown', closePoppEscBtn(anyPopup)); 
+  document.removeEventListener('keydown', closePoppEscBtn(anyPopup));
 };
 
 /** function open edit profile */
 function openProfilePopup() {
-  nameInput.value = editTitle.textContent;
+  nameInput.value = titleProfile.textContent;
   hideInputError(formElement, nameInput, enableValidate.inputErrorClass, enableValidate.errorClass);
-  jobInput.value = editSubtitle.textContent;
+  jobInput.value = subtitleProfile.textContent;
   hideInputError(formElement, jobInput, enableValidate.inputErrorClass, enableValidate.errorClass);
   enableSubmitButton(formElementSubmitButton, enableValidate.inactiveButtonClass);
   openPopup(popupEdit);
@@ -111,8 +111,8 @@ function openPlacePopup() {
 /** function handler submit profile form */
 function handlerProfileFormSubmit(evt) {
   evt.preventDefault();
-  editTitle.textContent = nameInput.value;
-  editSubtitle.textContent = jobInput.value;
+  titleProfile.textContent = nameInput.value;
+  subtitleProfile.textContent = jobInput.value;
   closePopup(popupEdit);
 };
 
@@ -126,7 +126,7 @@ function handlerPlaceFormSubmit(evt) {
 
 /** function close popup on overlay */
 function closePopupOverlay(anyPopup) {
-  return function(evt) {
+  return function (evt) {
     if (evt.target === evt.currentTarget) {
       closePopup(anyPopup);
     };
@@ -135,7 +135,7 @@ function closePopupOverlay(anyPopup) {
 
 /** function close popup on Esc */
 function closePoppEscBtn(anyPopup) {
-  return function(evt) {
+  return function (evt) {
     if (evt.key === 'Escape') {
       closePopup(anyPopup);
     };
@@ -143,12 +143,12 @@ function closePoppEscBtn(anyPopup) {
 };
 
 /** listener */
-editButton.addEventListener('click', openProfilePopup);
-closeEditPopup.addEventListener('click', () => closePopup(popupEdit));
+profileButton.addEventListener('click', openProfilePopup);
+profilePopupClose.addEventListener('click', () => closePopup(popupEdit));
 formElement.addEventListener('submit', handlerProfileFormSubmit);
 
 placeButton.addEventListener('click', openPlacePopup);
-closePlacePopup.addEventListener('click', () => closePopup(popupPlace));
+placePopupClose.addEventListener('click', () => closePopup(popupPlace));
 cardAddFormElement.addEventListener('submit', handlerPlaceFormSubmit);
 
 imageCloseButton.addEventListener('click', () => closePopup(imageOpenPopup));

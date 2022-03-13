@@ -7,7 +7,3 @@
 .popup__input:focus {
   border-bottom: 1px solid #007dff;
 }
-
-.popup__input:invalid {
-  border-bottom: 1px solid #f00;
-}
