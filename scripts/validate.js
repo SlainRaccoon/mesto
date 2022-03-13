@@ -1,5 +1,5 @@
 /** start object */
-const setObject = {
+const enableValidate = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-btn',
@@ -87,4 +87,4 @@ const enableValidation = ({formSelector, ...rest}) => {
   });
 };
 
-enableValidation(setObject);
+enableValidation(enableValidate);

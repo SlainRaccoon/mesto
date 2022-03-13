@@ -20,7 +20,6 @@ const nameInput = document.querySelector('#name-input');
 const jobInput = document.querySelector('#job-input');
 const editTitle = document.querySelector('.profile__name');
 const editSubtitle = document.querySelector('.profile__subtitle');
-//const submitEditButton = document.querySelector('.popup__save-btn');
 
 /** popup zoom image */
 const imageOpenPopup = document.querySelector('.popup-view');
@@ -93,19 +92,19 @@ const closePopup = function (anyPopup) {
 /** function open edit profile */
 function openProfilePopup() {
   nameInput.value = editTitle.textContent;
-  hideInputError(formElement, nameInput, setObject.inputErrorClass, setObject.errorClass);
+  hideInputError(formElement, nameInput, enableValidate.inputErrorClass, enableValidate.errorClass);
   jobInput.value = editSubtitle.textContent;
-  hideInputError(formElement, jobInput, setObject.inputErrorClass, setObject.errorClass);
-  enableSubmitButton(formElementSubmitButton, setObject.inactiveButtonClass);
+  hideInputError(formElement, jobInput, enableValidate.inputErrorClass, enableValidate.errorClass);
+  enableSubmitButton(formElementSubmitButton, enableValidate.inactiveButtonClass);
   openPopup(popupEdit);
 };
 
 /** function open add place */
 function openPlacePopup() {
   formPlace.reset();
-  hideInputError(cardAddFormElement, placeInput, setObject.inputErrorClass, setObject.errorClass);
-  hideInputError(cardAddFormElement, linkInput, setObject.inputErrorClass, setObject.errorClass);
-  disableSubmitButton(cardAddFormSubmitButton, setObject.inactiveButtonClass);
+  hideInputError(cardAddFormElement, placeInput, enableValidate.inputErrorClass, enableValidate.errorClass);
+  hideInputError(cardAddFormElement, linkInput, enableValidate.inputErrorClass, enableValidate.errorClass);
+  disableSubmitButton(cardAddFormSubmitButton, enableValidate.inactiveButtonClass);
   openPopup(popupPlace);
 };
 
