@@ -1,5 +1,5 @@
 /** massiv cards */
-const initialCards = [
+export const initialCards = [
   {
     name: 'Набу',
     link: 'https://kartinkin.net/uploads/posts/2021-04/thumbs/1618103152_7-p-planeta-nabu-zvezdnie-voini-fentezi-10.jpg'
@@ -27,7 +27,7 @@ const initialCards = [
 ];
 
 /** start object */
-const enableValidate = {
+export const enableValidate = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-btn',
