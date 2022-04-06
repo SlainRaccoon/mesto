@@ -35,3 +35,38 @@ export const enableValidate = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_active'
 }
+
+/** constants */
+export const formEdit = document.querySelector('#form-edit');
+
+export const profileButton = document.querySelector('.profile__edit-btn');
+export const popupEdit = document.querySelector('.popup-edit');
+export const profilePopupClose = popupEdit.querySelector('.popup__close-btn');
+
+/** new place */
+export const placeButton = document.querySelector('.profile__add-btn');
+export const popupPlace = document.querySelector('.popup-place');
+export const cardAddFormElement = document.querySelector('#form-place');
+export const placePopupClose = popupPlace.querySelector('.popup__close-btn');
+
+/** inputs edit profile */
+export const nameInput = document.querySelector('#name-input');
+export const jobInput = document.querySelector('#job-input');
+export const titleProfile = document.querySelector('.profile__name');
+export const subtitleProfile = document.querySelector('.profile__subtitle');
+
+/** popup zoom image */
+export const imageOpenPopup = document.querySelector('.popup-view');
+export const cardImage = imageOpenPopup.querySelector('.popup__picture');
+export const cardTitle = imageOpenPopup.querySelector('.popup__caption');
+export const imageCloseButton = imageOpenPopup.querySelector('.popup__close-btn');
+
+/** template */
+export const gallery = document.querySelector('.gallery');
+
+/** name, link */
+export const placeInput = cardAddFormElement.querySelector('#place-input');
+export const linkInput = cardAddFormElement.querySelector('#link-input');
+
+export const editProfileForm = popupEdit.querySelector('#form-edit');
+export const addPlaceForm = popupPlace.querySelector('#form-place');

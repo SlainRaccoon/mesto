@@ -1,120 +1,27 @@
-import { initialCards, enableValidate } from "./constants.js";
+import { initialCards, enableValidate, formEdit, profileButton, popupEdit, profilePopupClose, placeButton, popupPlace, cardAddFormElement, placePopupClose, nameInput, jobInput, titleProfile, subtitleProfile, imageOpenPopup, imageCloseButton, gallery, placeInput, linkInput, editProfileForm, addPlaceForm } from "./constants.js";
 import { FormValidator } from "./FormValidator.js"
+import { Card } from "./Card.js";
+import { closePopup, openProfilePopup, openPlacePopup, closePopupOverlay, openViweImage } from "./utils.js"
 
-/** elements forms */
-const formEdit = document.querySelector('#form-edit');
-const formPlace = document.querySelector('#form-place');
-const formElementSubmitButton = formEdit.querySelector('.popup__save-btn');
-
-/** edit profile */
-const profileButton = document.querySelector('.profile__edit-btn');
-const popupEdit = document.querySelector('.popup-edit');
-const profilePopupClose = popupEdit.querySelector('.popup__close-btn');
-
-/** new place */
-const placeButton = document.querySelector('.profile__add-btn');
-const popupPlace = document.querySelector('.popup-place');
-const cardAddFormElement = document.querySelector('#form-place');
-const placePopupClose = popupPlace.querySelector('.popup__close-btn');
-const cardAddFormSubmitButton = cardAddFormElement.querySelector('.popup__save-btn');
-
-/** inputs edit profile */
-const nameInput = document.querySelector('#name-input');
-const jobInput = document.querySelector('#job-input');
-const titleProfile = document.querySelector('.profile__name');
-const subtitleProfile = document.querySelector('.profile__subtitle');
-
-/** popup zoom image */
-const imageOpenPopup = document.querySelector('.popup-view');
-const cardImage = imageOpenPopup.querySelector('.popup__picture');
-const cardTitle = imageOpenPopup.querySelector('.popup__caption');
-const imageCloseButton = imageOpenPopup.querySelector('.popup__close-btn');
-
-/** template */
-const templateCards = document.querySelector('#cards').content;
-const gallery = document.querySelector('.gallery');
-
-const placeInput = cardAddFormElement.querySelector('#place-input');
-const linkInput = cardAddFormElement.querySelector('#link-input');
-
-const editProfileForm = popupEdit.querySelector('#form-edit');
-const addPlaceForm = popupPlace.querySelector('#form-place');
-
-const editProfileValidator = new FormValidator(enableValidate, editProfileForm);
-const addPlaceValidator = new FormValidator(enableValidate, addPlaceForm);
+export const editProfileValidator = new FormValidator(enableValidate, editProfileForm);
+export const addPlaceValidator = new FormValidator(enableValidate, addPlaceForm);
 
 editProfileValidator.enableValidation();
 addPlaceValidator.enableValidation();
 
-/** function create new card */
-function addCard(itemName, itemLink) {
-  const galleryCrad = templateCards.cloneNode(true);
-  const galleryCardImage = galleryCrad.querySelector('.gallery__image');
-  const galleryCardTitle = galleryCrad.querySelector('.gallery__title');
+function createCard(item) {
+  const card = new Card(item, '#cards', openViweImage);
+  const cardElement = card.addCard();
 
-  galleryCardTitle.textContent = itemName;
-  galleryCardImage.src = itemLink;
-  galleryCardImage.alt = itemName;
-
-  galleryCardImage.addEventListener('click', openImage);
-  galleryCrad.querySelector('.gallery__like-btn').addEventListener('click', pressLike);
-  galleryCrad.querySelector('.gallery__delete-btn').addEventListener('click', deleteCard);
-
-  return galleryCrad;
-};
+  return cardElement;
+}
 
 /** render 6 cards from massiv */
-initialCards.forEach(item => {
-  gallery.append(addCard(item.name, item.link));
+initialCards.forEach(function (el) {
+  const cardElement = createCard(el);
+
+  gallery.append(cardElement);
 });
-
-/** function open zoom image */
-function openImage(evt) {
-  const imageTarget = evt.target;
-  cardImage.src = imageTarget.src;
-  cardImage.alt = imageTarget.alt;
-  cardTitle.textContent = imageTarget.alt;
-  openPopup(imageOpenPopup);
-};
-
-/** function like */
-function pressLike(evt) {
-  evt.target.classList.toggle('gallery__like-btn_active');
-};
-
-/** function delete */
-function deleteCard(evt) {
-  evt.target.closest('.gallery__list').remove();
-};
-
-/** function open and close popup */
-function openPopup(anyPopup) {
-  anyPopup.classList.add('popup_opened');
-  /** add listener Esc button */
-  document.addEventListener('keydown', closePoppEscBtn(anyPopup));
-};
-
-function closePopup(anyPopup) {
-  anyPopup.classList.remove('popup_opened');
-  /** remove listener Esc button */
-  document.removeEventListener('keydown', closePoppEscBtn(anyPopup));
-};
-
-/** function open edit profile */
-function openProfilePopup() {
-  nameInput.value = titleProfile.textContent;
-  jobInput.value = subtitleProfile.textContent;
-  editProfileValidator.resetErrors();
-  editProfileValidator.toggleButtonState();
-  openPopup(popupEdit);
-};
-
-/** function open add place */
-function openPlacePopup() {
-  addPlaceValidator.resetErrors();
-  addPlaceValidator.toggleButtonState();
-  openPopup(popupPlace);
-};
 
 /** function handler submit profile form */
 function handlerProfileFormSubmit(evt) {
@@ -127,27 +34,15 @@ function handlerProfileFormSubmit(evt) {
 /** function handler submit add place */
 function handlerPlaceFormSubmit(evt) {
   evt.preventDefault();
-  const newCardCreate = addCard(placeInput.value, linkInput.value);
+
+  const data = {
+    name: placeInput.value,
+    link: linkInput.value
+  }
+  const newCardCreate = createCard(data);
+
   gallery.prepend(newCardCreate);
   closePopup(popupPlace);
-};
-
-/** function close popup on overlay */
-function closePopupOverlay(anyPopup) {
-  return function (evt) {
-    if (evt.target === evt.currentTarget) {
-      closePopup(anyPopup);
-    };
-  };
-};
-
-/** function close popup on Esc */
-function closePoppEscBtn(anyPopup) {
-  return function (evt) {
-    if (evt.key === 'Escape') {
-      closePopup(anyPopup);
-    };
-  };
 };
 
 /** listener */
