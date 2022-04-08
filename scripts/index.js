@@ -1,10 +1,9 @@
-import { initialCards, enableValidate, formEdit, profileButton, popupEdit, profilePopupClose, placeButton, popupPlace, cardAddFormElement, placePopupClose, nameInput, jobInput, titleProfile, subtitleProfile, imageOpenPopup, imageCloseButton, gallery, placeInput, linkInput, editProfileForm, addPlaceForm } from "./constants.js";
+import { initialCards, enableValidate, formEdit, profileButton, popupEdit, profilePopupClose, placeButton, popupPlace, cardAddFormElement, placePopupClose, nameInput, jobInput, titleProfile, subtitleProfile, imageOpenPopup, cardImage, cardTitle, imageCloseButton, gallery, placeInput, linkInput, editProfileForm, addPlaceForm } from "./constants.js";
 import { FormValidator } from "./FormValidator.js"
 import { Card } from "./Card.js";
-import { closePopup, openProfilePopup, openPlacePopup, closePopupOverlay, openViweImage } from "./utils.js"
 
-export const editProfileValidator = new FormValidator(enableValidate, editProfileForm);
-export const addPlaceValidator = new FormValidator(enableValidate, addPlaceForm);
+const editProfileValidator = new FormValidator(enableValidate, editProfileForm);
+const addPlaceValidator = new FormValidator(enableValidate, addPlaceForm);
 
 editProfileValidator.enableValidation();
 addPlaceValidator.enableValidation();
@@ -22,6 +21,61 @@ initialCards.forEach(function (el) {
 
   gallery.append(cardElement);
 });
+
+/** function open and close popup */
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  /** add listener Esc button */
+  document.addEventListener('keydown', closePopupEscBtn);
+};
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  /** remove listener Esc button */
+  document.removeEventListener('keydown', closePopupEscBtn);
+};
+
+/** function close popup on Esc */
+function closePopupEscBtn(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+/** function close popup on overlay */
+function closePopupOverlay(popup) {
+  return function (evt) {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popup);
+    };
+  };
+};
+
+/** function open edit profile */
+function openProfilePopup() {
+  nameInput.value = titleProfile.textContent;
+  jobInput.value = subtitleProfile.textContent;
+  editProfileValidator.resetErrors();
+  editProfileValidator.toggleButtonState();
+  openPopup(popupEdit);
+};
+
+/** function open add place */
+function openPlacePopup() {
+  addPlaceValidator.resetErrors();
+  addPlaceValidator.toggleButtonState();
+  openPopup(popupPlace);
+};
+
+/** function open zoom image */
+function openViweImage(name, link) {
+  cardImage.src = link;
+  cardImage.alt = name;
+  cardTitle.textContent = name;
+
+  openPopup(imageOpenPopup);
+};
 
 /** function handler submit profile form */
 function handlerProfileFormSubmit(evt) {

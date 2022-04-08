@@ -1,5 +1,5 @@
 /** massiv cards */
-export const initialCards = [
+const initialCards = [
   {
     name: 'Набу',
     link: 'https://kartinkin.net/uploads/posts/2021-04/thumbs/1618103152_7-p-planeta-nabu-zvezdnie-voini-fentezi-10.jpg'
@@ -27,7 +27,7 @@ export const initialCards = [
 ];
 
 /** start object */
-export const enableValidate = {
+const enableValidate = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-btn',
@@ -37,36 +37,38 @@ export const enableValidate = {
 }
 
 /** constants */
-export const formEdit = document.querySelector('#form-edit');
+const formEdit = document.querySelector('#form-edit');
 
-export const profileButton = document.querySelector('.profile__edit-btn');
-export const popupEdit = document.querySelector('.popup-edit');
-export const profilePopupClose = popupEdit.querySelector('.popup__close-btn');
+const profileButton = document.querySelector('.profile__edit-btn');
+const popupEdit = document.querySelector('.popup-edit');
+const profilePopupClose = popupEdit.querySelector('.popup__close-btn');
 
 /** new place */
-export const placeButton = document.querySelector('.profile__add-btn');
-export const popupPlace = document.querySelector('.popup-place');
-export const cardAddFormElement = document.querySelector('#form-place');
-export const placePopupClose = popupPlace.querySelector('.popup__close-btn');
+const placeButton = document.querySelector('.profile__add-btn');
+const popupPlace = document.querySelector('.popup-place');
+const cardAddFormElement = document.querySelector('#form-place');
+const placePopupClose = popupPlace.querySelector('.popup__close-btn');
 
 /** inputs edit profile */
-export const nameInput = document.querySelector('#name-input');
-export const jobInput = document.querySelector('#job-input');
-export const titleProfile = document.querySelector('.profile__name');
-export const subtitleProfile = document.querySelector('.profile__subtitle');
+const nameInput = document.querySelector('#name-input');
+const jobInput = document.querySelector('#job-input');
+const titleProfile = document.querySelector('.profile__name');
+const subtitleProfile = document.querySelector('.profile__subtitle');
 
 /** popup zoom image */
-export const imageOpenPopup = document.querySelector('.popup-view');
-export const cardImage = imageOpenPopup.querySelector('.popup__picture');
-export const cardTitle = imageOpenPopup.querySelector('.popup__caption');
-export const imageCloseButton = imageOpenPopup.querySelector('.popup__close-btn');
+const imageOpenPopup = document.querySelector('.popup-view');
+const cardImage = imageOpenPopup.querySelector('.popup__picture');
+const cardTitle = imageOpenPopup.querySelector('.popup__caption');
+const imageCloseButton = imageOpenPopup.querySelector('.popup__close-btn');
 
 /** template */
-export const gallery = document.querySelector('.gallery');
+const gallery = document.querySelector('.gallery');
 
 /** name, link */
-export const placeInput = cardAddFormElement.querySelector('#place-input');
-export const linkInput = cardAddFormElement.querySelector('#link-input');
+const placeInput = cardAddFormElement.querySelector('#place-input');
+const linkInput = cardAddFormElement.querySelector('#link-input');
 
-export const editProfileForm = popupEdit.querySelector('#form-edit');
-export const addPlaceForm = popupPlace.querySelector('#form-place');
+const editProfileForm = popupEdit.querySelector('#form-edit');
+const addPlaceForm = popupPlace.querySelector('#form-place');
+
+export { initialCards, enableValidate, formEdit, profileButton, popupEdit, profilePopupClose, placeButton, popupPlace, cardAddFormElement, placePopupClose, nameInput, jobInput, titleProfile, subtitleProfile, imageOpenPopup, cardImage, cardTitle, imageCloseButton, gallery, placeInput, linkInput, editProfileForm, addPlaceForm }

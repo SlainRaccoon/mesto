@@ -24,7 +24,7 @@ export class Card {
     this._galleryLikeBtn = this._galleryCrad.querySelector('.gallery__like-btn');
     this._galleryDeleteBtn = this._galleryCrad.querySelector('.gallery__delete-btn');
     this._galleryCardImage.src = this._link;
-    this._gallerCardTitle.alt = this._name;
+    this._galleryCardImage.alt = this._name;
     this._gallerCardTitle.textContent = this._name;
 
     this._setEventlisteners();
