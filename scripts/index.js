@@ -1,4 +1,4 @@
-import { initialCards, enableValidate, formEdit, profileButton, popupEdit, profilePopupClose, placeButton, popupPlace, cardAddFormElement, placePopupClose, nameInput, jobInput, titleProfile, subtitleProfile, imageOpenPopup, cardImage, cardTitle, imageCloseButton, gallery, placeInput, linkInput, editProfileForm, addPlaceForm } from "./constants.js";
+import { initialCards, enableValidate, profileForm, profileButton, profileModalWindow, placeButton, placeModalWindow, placeForm, nameInput, jobInput, titleProfile, subtitleProfile, imageModalWindow, cardImage, cardTitle, gallery, placeInput, linkInput, editProfileForm, addPlaceForm, modals } from "./constants.js";
 import { FormValidator } from "./FormValidator.js"
 import { Card } from "./Card.js";
 
@@ -23,49 +23,54 @@ initialCards.forEach(function (el) {
 });
 
 /** function open and close popup */
-function openPopup(popup) {
+function openModal(popup) {
   popup.classList.add('popup_opened');
   /** add listener Esc button */
-  document.addEventListener('keydown', closePopupEscBtn);
+  document.addEventListener('keydown', closeModalEscBtn);
 };
 
-function closePopup(popup) {
+function closeModal(popup) {
   popup.classList.remove('popup_opened');
   /** remove listener Esc button */
-  document.removeEventListener('keydown', closePopupEscBtn);
+  document.removeEventListener('keydown', closeModalEscBtn);
 };
 
 /** function close popup on Esc */
-function closePopupEscBtn(evt) {
+function closeModalEscBtn(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
+    closeModal(openedPopup);
   }
-}
-
-/** function close popup on overlay */
-function closePopupOverlay(popup) {
-  return function (evt) {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popup);
-    };
-  };
 };
 
+modals.forEach((modal) => {
+  modal.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup-opened')) {
+      closeModal(modal);
+    }
+    if (evt.target.classList.contains('popup__close-btn')) {
+      closeModal(modal);
+    }
+    if (evt.target === evt.currentTarget) {
+      closeModal(modal);
+    }
+  });
+});
+
 /** function open edit profile */
-function openProfilePopup() {
+function openProfileModal() {
   nameInput.value = titleProfile.textContent;
   jobInput.value = subtitleProfile.textContent;
   editProfileValidator.resetErrors();
   editProfileValidator.toggleButtonState();
-  openPopup(popupEdit);
+  openModal(profileModalWindow);
 };
 
 /** function open add place */
-function openPlacePopup() {
+function openPlaceModal() {
   addPlaceValidator.resetErrors();
   addPlaceValidator.toggleButtonState();
-  openPopup(popupPlace);
+  openModal(placeModalWindow);
 };
 
 /** function open zoom image */
@@ -74,7 +79,7 @@ function openViweImage(name, link) {
   cardImage.alt = name;
   cardTitle.textContent = name;
 
-  openPopup(imageOpenPopup);
+  openModal(imageModalWindow);
 };
 
 /** function handler submit profile form */
@@ -82,7 +87,7 @@ function handlerProfileFormSubmit(evt) {
   evt.preventDefault();
   titleProfile.textContent = nameInput.value;
   subtitleProfile.textContent = jobInput.value;
-  closePopup(popupEdit);
+  closeModal(profileModalWindow);
 };
 
 /** function handler submit add place */
@@ -96,20 +101,12 @@ function handlerPlaceFormSubmit(evt) {
   const newCardCreate = createCard(data);
 
   gallery.prepend(newCardCreate);
-  closePopup(popupPlace);
+  closeModal(placeModalWindow);
 };
 
+
 /** listener */
-profileButton.addEventListener('click', openProfilePopup);
-profilePopupClose.addEventListener('click', () => closePopup(popupEdit));
-formEdit.addEventListener('submit', handlerProfileFormSubmit);
-
-placeButton.addEventListener('click', openPlacePopup);
-placePopupClose.addEventListener('click', () => closePopup(popupPlace));
-cardAddFormElement.addEventListener('submit', handlerPlaceFormSubmit);
-
-imageCloseButton.addEventListener('click', () => closePopup(imageOpenPopup));
-
-popupEdit.addEventListener('click', closePopupOverlay(popupEdit));
-popupPlace.addEventListener('click', closePopupOverlay(popupPlace));
-imageOpenPopup.addEventListener('click', closePopupOverlay(imageOpenPopup));
+profileButton.addEventListener('click', openProfileModal);
+placeButton.addEventListener('click', openPlaceModal);
+profileForm.addEventListener('submit', handlerProfileFormSubmit);
+placeForm.addEventListener('submit', handlerPlaceFormSubmit);

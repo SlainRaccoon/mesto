@@ -36,39 +36,33 @@ const enableValidate = {
   errorClass: 'popup__input-error_active'
 }
 
-/** constants */
-const formEdit = document.querySelector('#form-edit');
-
+/** buttons */
 const profileButton = document.querySelector('.profile__edit-btn');
-const popupEdit = document.querySelector('.popup-edit');
-const profilePopupClose = popupEdit.querySelector('.popup__close-btn');
-
-/** new place */
 const placeButton = document.querySelector('.profile__add-btn');
-const popupPlace = document.querySelector('.popup-place');
-const cardAddFormElement = document.querySelector('#form-place');
-const placePopupClose = popupPlace.querySelector('.popup__close-btn');
 
-/** inputs edit profile */
+/** modals windows */
+const modals = document.querySelectorAll('.popup');
+const profileModalWindow = document.querySelector('.popup-edit');
+const placeModalWindow = document.querySelector('.popup-place');
+const imageModalWindow = document.querySelector('.popup-view');
+
+/** forms */
+const profileForm = document.querySelector('#form-edit');
+const placeForm = document.querySelector('#form-place');
+const editProfileForm = profileModalWindow.querySelector('#form-edit');
+const addPlaceForm = placeModalWindow.querySelector('#form-place');
+
+/** inputs */
 const nameInput = document.querySelector('#name-input');
 const jobInput = document.querySelector('#job-input');
 const titleProfile = document.querySelector('.profile__name');
 const subtitleProfile = document.querySelector('.profile__subtitle');
-
-/** popup zoom image */
-const imageOpenPopup = document.querySelector('.popup-view');
-const cardImage = imageOpenPopup.querySelector('.popup__picture');
-const cardTitle = imageOpenPopup.querySelector('.popup__caption');
-const imageCloseButton = imageOpenPopup.querySelector('.popup__close-btn');
+const cardImage = imageModalWindow.querySelector('.popup__picture');
+const cardTitle = imageModalWindow.querySelector('.popup__caption');
+const placeInput = placeForm.querySelector('#place-input');
+const linkInput = placeForm.querySelector('#link-input');
 
 /** template */
 const gallery = document.querySelector('.gallery');
 
-/** name, link */
-const placeInput = cardAddFormElement.querySelector('#place-input');
-const linkInput = cardAddFormElement.querySelector('#link-input');
-
-const editProfileForm = popupEdit.querySelector('#form-edit');
-const addPlaceForm = popupPlace.querySelector('#form-place');
-
-export { initialCards, enableValidate, formEdit, profileButton, popupEdit, profilePopupClose, placeButton, popupPlace, cardAddFormElement, placePopupClose, nameInput, jobInput, titleProfile, subtitleProfile, imageOpenPopup, cardImage, cardTitle, imageCloseButton, gallery, placeInput, linkInput, editProfileForm, addPlaceForm }
+export { initialCards, enableValidate, profileForm, profileButton, profileModalWindow, placeButton, placeModalWindow, placeForm, nameInput, jobInput, titleProfile, subtitleProfile, imageModalWindow, cardImage, cardTitle, gallery, placeInput, linkInput, editProfileForm, addPlaceForm, modals }
