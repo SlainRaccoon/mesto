@@ -5,20 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link rel="icon" href="images/swicon-removebg-preview.png" type="icon">
-  <link rel="stylesheet" href="pages/index.css">
 </head>
 
 <body class="root">
-
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
   </header>
-
   <main class="content">
     <section class="profile">
       <div class="profile__container">
-        <img class="profile__image" src="./images/mandalorian.jpg" alt="Фото Жак-Ив Кусто">
+        <img class="profile__image" src="<%=requier('./images/mandalorian.jpg')%>" alt="Аватарка">
         <div class="profile__info">
           <h1 class="profile__name">Mandalorian</h1>
           <button class="profile__edit-btn" type="button" aria-label="edit"></button>
@@ -27,17 +23,12 @@
         <button class="profile__add-btn" type="button" aria-label="add"></button>
       </div>
     </section>
-
     <section class="gallery">
-
     </section>
-
   </main>
-
   <footer class="footer">
     <p class="footer__copyright">2022 &#169; Evgen Khafizov</p>
   </footer>
-
   <div class="popup popup-edit">
     <div class="popup__block">
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -53,7 +44,6 @@
       <button class="popup__close-btn" type="button" aria-label="close"></button>
     </div>
   </div>
-
   <div class="popup popup-place">
     <div class="popup__block">
       <h2 class="popup__title">Новое место</h2>
@@ -69,7 +59,6 @@
       <button class="popup__close-btn" type="button" aria-label="close"></button>
     </div>
   </div>
-
   <div class="popup popup-view">
     <figure class="popup__image">
       <img class="popup__picture" alt="">
@@ -79,7 +68,6 @@
       <button class="popup__close-btn" type="button" aria-label="close"></button>
     </figure>
   </div>
-
   <template id="cards">
     <article class="gallery__list">
       <figure class="gallery__item">
@@ -92,9 +80,5 @@
       </figure>
     </article>
   </template>
-
-  <script type="module" src="./scripts/index.js"></script>
-
 </body>
-
 </html>

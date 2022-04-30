@@ -1,10 +1,10 @@
 export class Card {
-  constructor(data, templateSelector, openViweImage) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
 
     this._templateSelector = templateSelector;
-    this._openViweImage = openViweImage;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -40,7 +40,7 @@ export class Card {
       this._pressDeleteBtn();
     });
     this._galleryCardImage.addEventListener('click', () => {
-      this._openViweImage(this._name, this._link);
+      this._handleCardClick(this._name, this._link);
     });
   }
 
