@@ -42,7 +42,7 @@ export const placeButton = document.querySelector('.profile__add-btn');
 
 /** modals windows */
 export const modals = document.querySelectorAll('.popup');
-export const profileModalWindow = document.querySelector('.popup-edit');
+export const profileModalWindow = document.querySelector('.popup-profile');
 export const placeModalWindow = document.querySelector('.popup-place');
 export const imageModalWindow = document.querySelector('.popup-view');
 
@@ -53,8 +53,8 @@ export const editProfileForm = profileModalWindow.querySelector('#form-edit');
 export const addPlaceForm = placeModalWindow.querySelector('#form-place');
 
 /** inputs */
-export const nameInput = document.querySelector('#name-input');
-export const jobInput = document.querySelector('#job-input');
+export const nameInput = profileForm.querySelector('#name-input');
+export const jobInput = profileForm.querySelector('#job-input');
 export const titleProfile = document.querySelector('.profile__name');
 export const subtitleProfile = document.querySelector('.profile__subtitle');
 export const cardImage = imageModalWindow.querySelector('.popup__picture');
@@ -63,4 +63,4 @@ export const placeInput = placeForm.querySelector('#place-input');
 export const linkInput = placeForm.querySelector('#link-input');
 
 /** template */
-export const gallery = document.querySelector('.gallery');
+export const gallerySection = document.querySelector('.gallery');

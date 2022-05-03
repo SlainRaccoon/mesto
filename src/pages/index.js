@@ -1,18 +1,15 @@
 import "./index.css"
 
-import { 
+import {
   initialCards,
   enableValidate,
   editProfileForm,
-  addPlaceForm, 
+  addPlaceForm,
   profileButton,
   placeButton,
-  profileModalWindow,
-  placeModalWindow,
-  imageModalWindow,
-  titleProfile,
-  subtitleProfile,
-  gallery,
+  gallerySection,
+  nameInput,
+  jobInput,
 } from "../utils/constants.js";
 
 import { FormValidator } from "../components/FormValidator.js"
@@ -22,6 +19,11 @@ import { UserInfo } from "../components/UserInfo.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 
+const section = new Section({ items: initialCards, renderer: render }, '.gallery');
+const imagePopup = new PopupWithImage('.popup-view');
+const profilePopup = new PopupWithForm('.popup-profile', handleProfileFormSubmit);
+const addPlacePopup = new PopupWithForm('.popup-place', handlePlaceFormSubmit);
+
 /** form validation */
 const editProfileValidator = new FormValidator(enableValidate, editProfileForm);
 const addPlaceValidator = new FormValidator(enableValidate, addPlaceForm);
@@ -29,57 +31,71 @@ const addPlaceValidator = new FormValidator(enableValidate, addPlaceForm);
 editProfileValidator.enableValidation();
 addPlaceValidator.enableValidation();
 
-/** add new Card */
-const createCard = (item) => {
-  const card = new Card(item, '#cards', () => {popupBigImage.open(item)});
-
-    return card.createCard();
+/** Section start 6 cards*/
+function render(card) {
+  const newData = {
+    name: card.name,
+    link: card.link
+  }
+  const cardElement = createCard(newData);
+  gallerySection.append(cardElement);
 }
 
-/** Section start 6 cards*/
-const sectionCards = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const card = createCard(item);
-    sectionCards.addItem(card);
-  }
-}, gallery);
+/** add new Card */
+function createCard(data) {
+  const card = new Card(data, '#cards', () => {
+    imagePopup.open(data.name, data.link);
+  });
+  const cardElement = card.createCard();
 
-sectionCards.renderItems();
-
-/** User Info */
-const userInfo = new UserInfo({ name: titleProfile, job: subtitleProfile });
+  return cardElement;
+}
 
 /** Modal profile*/
-const popupEditProfile = new PopupWithForm(profileModalWindow, (userData) => {
-    userInfo.setUserInfo(userData);
+function openProfilePopup() {
+  const { name, job } = userInfo.getUserInfo();
+  nameInput.value = name;
+  jobInput.value = job;
 
-    popupEditProfile.close();
-  });
+  profilePopup.open();
+}
 
-  profileButton.addEventListener('click', () => {
-    editProfileValidator.resetErrors();
-    popupEditProfile.setInputValues(userInfo.getUserInfo());
-    popupEditProfile.open();
-  });
+function handleProfileFormSubmit(data) {
+  const { profileName, profileJob } = data;
 
-  popupEditProfile.setEventListeners();
+  userInfo.setUserInfo(profileName, profileJob);
+  profilePopup.close();
+}
 
-  /**Modal new place */
-const popupNewPlace = new PopupWithForm(placeModalWindow, ({placeInput: name, linkInput: link}) => {
-  sectionCards.addItem(createCard({name:name, link:link}));
-
-  popupNewPlace.close();
-});
-
-placeButton.addEventListener('click', () => {
+/**Modal new place */
+function openPlacePopup() {
   addPlaceValidator.resetErrors();
-  popupNewPlace.open();
+  addPlaceValidator.toggleButtonState();
+
+  addPlacePopup.open();
+}
+
+function handlePlaceFormSubmit(data) {
+  const cardElement = createCard({
+    name: data['place'],
+    link: data['link']
+  });
+  section.addItem(cardElement);
+
+  addPlacePopup.close();
+}
+
+/** User Info */
+const userInfo = new UserInfo({
+  profileName: '.profile__name',
+  profileJob: '.profile__subtitle'
 });
 
-popupNewPlace.setEventListeners();
+section.renderItems();
 
- /**Modal big pic */
- const popupBigImage = new PopupWithImage(imageModalWindow);
+profileButton.addEventListener('click', openProfilePopup);
+placeButton.addEventListener('click', openPlacePopup);
 
-popupBigImage.setEventListeners();
+imagePopup.setEventListeners();
+addPlacePopup.setEventListeners();
+profilePopup.setEventListeners();

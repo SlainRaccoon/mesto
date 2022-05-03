@@ -3,22 +3,12 @@ export class Card {
     this._name = data.name;
     this._link = data.link;
 
-    this._templateSelector = templateSelector;
+    this._template = document.querySelector(templateSelector).content;
     this._handleCardClick = handleCardClick;
   }
 
-  _getTemplate() {
-    const cardTemplate = document
-    .querySelector(this._templateSelector)
-    .content
-    .querySelector('.gallery__list')
-    .cloneNode(true);
-
-    return cardTemplate;
-  }
-
-  addCard() {
-    this._galleryCrad = this._getTemplate();
+  createCard = () => {
+    this._galleryCrad = this._template.querySelector('.gallery__list').cloneNode(true);
     this._galleryCardImage = this._galleryCrad.querySelector('.gallery__image');
     this._gallerCardTitle = this._galleryCrad.querySelector('.gallery__title');
     this._galleryLikeBtn = this._galleryCrad.querySelector('.gallery__like-btn');
@@ -32,23 +22,17 @@ export class Card {
     return this._galleryCrad;
   }
 
-  _setEventlisteners() {
-    this._galleryLikeBtn.addEventListener('click', () => {
-      this._pressLikeBtn();
-    });
-    this._galleryDeleteBtn.addEventListener('click', () => {
-      this._pressDeleteBtn();
-    });
-    this._galleryCardImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link);
-    });
+  _setEventlisteners = () => {
+    this._galleryLikeBtn.addEventListener('click', this._pressLikeBtn);
+    this._galleryDeleteBtn.addEventListener('click', this._pressDeleteBtn);
+    this._galleryCardImage.addEventListener('click', this._handleCardClick);
   }
 
-  _pressLikeBtn() {
+  _pressLikeBtn = () => {
     this._galleryLikeBtn.classList.toggle('gallery__like-btn_active');
   }
 
-  _pressDeleteBtn() {
-    this._galleryCrad.closest('.gallery__list').remove();
+  _pressDeleteBtn = () => {
+    this._galleryCrad.remove();
   }
 }
