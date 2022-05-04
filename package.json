@@ -4,7 +4,7 @@
   "description": "Project Mesto",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "rimraf dist && webpack --mode production",
     "dev": "webpack server"
   },
   "repository": {

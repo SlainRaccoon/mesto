@@ -33,11 +33,7 @@ addPlaceValidator.enableValidation();
 
 /** Section start 6 cards*/
 function render(card) {
-  const newData = {
-    name: card.name,
-    link: card.link
-  }
-  const cardElement = createCard(newData);
+  const cardElement = createCard(card);
   gallerySection.append(cardElement);
 }
 
@@ -46,9 +42,7 @@ function createCard(data) {
   const card = new Card(data, '#cards', () => {
     imagePopup.open(data.name, data.link);
   });
-  const cardElement = card.createCard();
-
-  return cardElement;
+  return card.createCard();
 }
 
 /** Modal profile*/
@@ -61,9 +55,9 @@ function openProfilePopup() {
 }
 
 function handleProfileFormSubmit(data) {
-  const { profileName, profileJob } = data;
+  const { name, job } = data;
 
-  userInfo.setUserInfo(profileName, profileJob);
+  userInfo.setUserInfo(name, job);
   profilePopup.close();
 }
 
@@ -77,8 +71,8 @@ function openPlacePopup() {
 
 function handlePlaceFormSubmit(data) {
   const cardElement = createCard({
-    name: data['place'],
-    link: data['link']
+    name: data.place,
+    link: data.link
   });
   section.addItem(cardElement);
 

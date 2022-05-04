@@ -24,11 +24,9 @@ export class Popup {
     this._closeButton = this._popup.querySelector('.popup__close-btn');
 
     this._popup.addEventListener('mousedown', (evt) => {
-      if (evt.target === evt.currentTarget) {
+      if (evt.target === evt.currentTarget || evt.target === this._closeButton) {
         this.close();
-      } else if (evt.target === this._closeButton) {
-        this.close();
-      }
+      } 
     });
   }
 }

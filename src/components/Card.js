@@ -8,18 +8,18 @@ export class Card {
   }
 
   createCard = () => {
-    this._galleryCrad = this._template.querySelector('.gallery__list').cloneNode(true);
-    this._galleryCardImage = this._galleryCrad.querySelector('.gallery__image');
-    this._gallerCardTitle = this._galleryCrad.querySelector('.gallery__title');
-    this._galleryLikeBtn = this._galleryCrad.querySelector('.gallery__like-btn');
-    this._galleryDeleteBtn = this._galleryCrad.querySelector('.gallery__delete-btn');
+    this._galleryCard = this._template.querySelector('.gallery__list').cloneNode(true);
+    this._galleryCardImage = this._galleryCard.querySelector('.gallery__image');
+    this._gallerCardTitle = this._galleryCard.querySelector('.gallery__title');
+    this._galleryLikeBtn = this._galleryCard.querySelector('.gallery__like-btn');
+    this._galleryDeleteBtn = this._galleryCard.querySelector('.gallery__delete-btn');
     this._galleryCardImage.src = this._link;
     this._galleryCardImage.alt = this._name;
     this._gallerCardTitle.textContent = this._name;
 
     this._setEventlisteners();
 
-    return this._galleryCrad;
+    return this._galleryCard;
   }
 
   _setEventlisteners = () => {
@@ -33,6 +33,7 @@ export class Card {
   }
 
   _pressDeleteBtn = () => {
-    this._galleryCrad.remove();
+    this._galleryCard.remove();
+    this._galleryCard = null;
   }
 }
