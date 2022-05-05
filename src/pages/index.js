@@ -54,9 +54,7 @@ function openProfilePopup() {
   profilePopup.open();
 }
 
-function handleProfileFormSubmit(data) {
-  const { name, job } = data;
-
+function handleProfileFormSubmit({ name, job }) {
   userInfo.setUserInfo(name, job);
   profilePopup.close();
 }

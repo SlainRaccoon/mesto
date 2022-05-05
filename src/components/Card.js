@@ -8,7 +8,9 @@ export class Card {
   }
 
   createCard = () => {
-    this._galleryCard = this._template.querySelector('.gallery__list').cloneNode(true);
+    this._galleryCard = this._template
+    .querySelector('.gallery__list')
+    .cloneNode(true);
     this._galleryCardImage = this._galleryCard.querySelector('.gallery__image');
     this._gallerCardTitle = this._galleryCard.querySelector('.gallery__title');
     this._galleryLikeBtn = this._galleryCard.querySelector('.gallery__like-btn');
