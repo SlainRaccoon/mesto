@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='icon' href="<%=require('./images/swicon-removebg-preview.png')%>">
   <title>Mesto</title>
 </head>
 
@@ -14,7 +15,9 @@
   <main class="content">
     <section class="profile">
       <div class="profile__container">
-        <img class="profile__image" src="<%=require('./images/mandalorian1.jpg')%>" alt="Аватарка">
+        <button class="profile__avatar-btn" type="button" aria-label="edit">
+          <img class="profile__image" src="<%=require('./images/mandalorian1.jpg')%>" alt="Фото профиля">
+        </button>        
         <div class="profile__info">
           <h1 class="profile__name">Mandalorian</h1>
           <button class="profile__edit-btn" type="button" aria-label="edit"></button>
@@ -29,6 +32,7 @@
   <footer class="footer">
     <p class="footer__copyright">2022 &#169; Evgen Khafizov</p>
   </footer>
+
   <div class="popup popup-profile">
     <div class="popup__block">
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -44,6 +48,7 @@
       <button class="popup__close-btn" type="button" aria-label="close"></button>
     </div>
   </div>
+
   <div class="popup popup-place">
     <div class="popup__block">
       <h2 class="popup__title">Новое место</h2>
@@ -59,6 +64,7 @@
       <button class="popup__close-btn" type="button" aria-label="close"></button>
     </div>
   </div>
+
   <div class="popup popup-view">
     <figure class="popup__image">
       <img class="popup__picture" alt="">
@@ -68,6 +74,30 @@
       <button class="popup__close-btn" type="button" aria-label="close"></button>
     </figure>
   </div>
+
+  <div class="popup popup-avatar">
+    <div class="popup__block">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form popup__profile-avatar" name="profile-avatar" novalidate>
+        <input class="popup__input popup__input_link" type="url" value="" placeholder="" id="link" name="avatar"
+          autocomplete="off" required>
+        <span class="popup__input-error avatar-input-error"></span>
+        <button class="popup__save-btn" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close-btn" type="button" aria-label="close"></button>
+    </div>
+  </div>
+
+  <div class="popup popup-delete-card">
+    <div class="popup__block">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <form class="popup__form">
+        <button class="popup__save-btn" type="button" id="submitYes">Да</button>
+      </form>
+      <button class="popup__close-btn" type="button" aria-label="close"></button>
+    </div>
+  </div>
+
   <template id="cards">
     <article class="gallery__list">
       <figure class="gallery__item">
@@ -75,10 +105,14 @@
         <img class="gallery__image" src="#" alt="#">
         <figcaption class="gallery__info">
           <h2 class="gallery__title"></h2>
-          <button class="gallery__like-btn" type="button" aria-label="like"></button>
+          <div class="gallery__like-container">
+            <button class="gallery__like-btn" type="button" aria-label="like"></button>
+            <span class="gallery__like-number"></span>
+          </div>
         </figcaption>
       </figure>
     </article>
   </template>
 </body>
+
 </html>

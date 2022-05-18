@@ -39,6 +39,7 @@ export const enableValidate = {
 /** buttons */
 export const profileButton = document.querySelector('.profile__edit-btn');
 export const placeButton = document.querySelector('.profile__add-btn');
+export const avatarButton = document.querySelector('.profile__avatar-btn')
 
 /** modals windows */
 export const modals = document.querySelectorAll('.popup');
@@ -51,6 +52,7 @@ export const profileForm = document.querySelector('#form-edit');
 export const placeForm = document.querySelector('#form-place');
 export const editProfileForm = profileModalWindow.querySelector('#form-edit');
 export const addPlaceForm = placeModalWindow.querySelector('#form-place');
+export const avatarForm = document.querySelector('.popup-avatar');
 
 /** inputs */
 export const nameInput = profileForm.querySelector('#name-input');
