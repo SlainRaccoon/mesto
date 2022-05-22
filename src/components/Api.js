@@ -1,103 +1,86 @@
-class Api {
-  constructor({ baseUrl, headers }) {
-    this._headers = headers
-    this._baseUrl = baseUrl
-    // тело конструктора
+export class Api {
+  constructor(option) {
+    this._url = option.url;
+    this._headers = option.headers;
+  }
+  
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Ошибка.:${res.status}`);
+    }
   }
 
-  // 1. Загрузка информации о пользователе с сервера
-  getProfile() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: 'GET',
+  getUserInfo() {
+    return fetch(`${this._url}/users/me`, {
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse);
   }
 
-  // 2. Загрузка карточек с сервера
   getCards() {
-    return fetch(`${this._baseUrl}/cards`, { // this._baseUrl + '/cards'
-      method: 'GET',
+    return fetch(`${this._url}/cards`, {
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse);
   }
 
-  getAppInfo() {
-    return Promise.all([this.getCards(), this.getProfile()]);
-  }
-
-  // 3. Редактирование профиля
-  editProfile(item) {
-    return fetch(`${this._baseUrl}/users/me`, {
+  editProfile(data) {
+    return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
-    // делает из объекта строку
       body: JSON.stringify({
-        name: item.name,
-        about: item.job
+        name: data.name,
+        about: data.job
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse);
   }
 
-  // 4. Добавление новой карточки
-  addCard(item) {
-    return fetch(`${this._baseUrl}/cards`, { 
+  addNewCard(data) {
+    return fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: this._headers,
-      body: JSON.stringify({
-        name: item.name,
-        link: item.link,
+      headers: JSON.stringify({
+        name: data.name,
+        link: data.link
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse);
   }
 
-  // 7. Удаление карточки
-  deleteCard(_id) {
-    return fetch(`${this._baseUrl}/cards/${_id}`, {
+  deleteCard(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse);
   }
 
-  // 8. Cнятие лайка
-  deleteLike(_id) {
-    return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
-      method: 'DELETE',
-      headers: this._headers
-    })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-  }
-
-  // 8. Постановка лайка
-  addLike(_id) {
-    return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
+  addLike(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse);
   }
 
-  // 9. Обновление аватара пользователя
-  editAvatar(item) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+  delLike(cardId) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    .then(this._checkResponse);
+  }
+
+  editAvatar(data) {
+    return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: item.avatar
+        avatar: data.avatar
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(this._checkResponse);
   }
 }
-
-export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-40',
-  headers: {
-    authorization: 'a892697e-ad01-4cbc-9a1f-bbcc1c4a50e2',
-    'Content-Type': 'application/json'
-  }
-}); 
