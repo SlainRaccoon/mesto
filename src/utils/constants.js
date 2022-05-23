@@ -1,4 +1,4 @@
-export const enableValidate = {
+export const object = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-btn',
