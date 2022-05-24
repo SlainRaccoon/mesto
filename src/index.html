@@ -65,6 +65,19 @@
     </div>
   </div>
 
+  <div class="popup popup-avatar">
+    <div class="popup__block">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="popup__form" id="form-avatar" name="profile-avatar" novalidate>
+        <input class="popup__input" id="avatar-input" type="url" value="" placeholder="Ссылка на картинку" name="avatar"
+          autocomplete="off" required>
+        <span class="popup__input-error avatar-input-error"></span>
+        <button class="popup__save-btn" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close-btn" type="button" aria-label="close"></button>
+    </div>
+  </div>
+
   <div class="popup popup-view">
     <figure class="popup__image">
       <img class="popup__picture" alt="">
@@ -73,19 +86,6 @@
       </figcaption>
       <button class="popup__close-btn" type="button" aria-label="close"></button>
     </figure>
-  </div>
-
-  <div class="popup popup-avatar">
-    <div class="popup__block">
-      <h2 class="popup__title">Обновить аватар</h2>
-      <form class="popup__form popup__profile-avatar" name="profile-avatar" novalidate>
-        <input class="popup__input popup__input_link" type="url" value="" placeholder="" id="link" name="avatar"
-          autocomplete="off" required>
-        <span class="popup__input-error avatar-input-error"></span>
-        <button class="popup__save-btn" type="submit">Сохранить</button>
-      </form>
-      <button class="popup__close-btn" type="button" aria-label="close"></button>
-    </div>
   </div>
 
   <div class="popup popup-delete-card">

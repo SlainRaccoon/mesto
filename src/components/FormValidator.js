@@ -36,7 +36,7 @@ export class FormValidator {
   };
 
   /* validate input element*/
-  _hasInvalidInput = () => {
+  _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
@@ -78,8 +78,8 @@ export class FormValidator {
   enableValidation() {
     this._formList = Array.from(document.querySelectorAll(this._formSelector));
     this._formList.forEach(formElement => {
-      formElement.addEventListener('submit', function (event) {
-        event.preventDefault();
+      formElement.addEventListener('submit', (evt) => {
+        evt.preventDefault();
       });
       this._setEventListeners();
     });

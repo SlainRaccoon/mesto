@@ -27,13 +27,13 @@ export class Card {
   }
 
   like() {
-    this._galleryLike.classList.toggle('.gallery__like-btn_active');
+    this._galleryLike.classList.toggle('gallery__like-btn_active');
   }
 
   _checkLike() {
     this._likes.some((like) => {
       if (like._id === this._userId) {
-        this._galleryLike.classList.add('.gallery__like-btn_active');
+        this._galleryLike.classList.add('gallery__like-btn_active');
       }
     });
   }
@@ -68,19 +68,19 @@ export class Card {
     this._galleryDelete.addEventListener('click', () => {
       this._handleCardDelete(this._id);
     });
-    this._galleryImage.addEventListener('click', () => {
+    this._galleryCardImage.addEventListener('click', () => {
       this._openImage();
     });
   }
 
   handleLike(data) {
     this._likes = data.likes;
-    this._galleryLikeNumb.textContent = this._like.length;
+    this._galleryLikeNumb.textContent = this._likes.length;
     this.like();
   }
 
   setLike() {
-    if (this._galleryLike.classList.contains('.gallery__like-btn_active')) {
+    if (this._galleryLike.classList.contains('gallery__like-btn_active')) {
       this._handleCardLikeRemove(this._id);
     } else {
       this._handleCardLikeAdd(this._id);

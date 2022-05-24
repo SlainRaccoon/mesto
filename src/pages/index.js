@@ -5,6 +5,7 @@ import {
   editProfile,
   editPlace,
   object,
+  zoomImage
 } from "../utils/constants.js";
 
 import { FormValidator } from "../components/FormValidator.js"
@@ -14,32 +15,24 @@ import { UserInfo } from "../components/UserInfo.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithDelete } from "../components/PopupWithDelete.js";
-import { Api } from "../components/Api";
-
-const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-40',
-  headers: {
-    authorization: 'a892697e-ad01-4cbc-9a1f-bbcc1c4a50e2',
-    'Content-Type': 'application/json'
-  }
-});
+import { api } from "../components/Api";
 
 /*form validation*/
-const profileValidator = new FormValidator (object, editProfile.profileForm);
-const placeValidator = new FormValidator (object, editPlace.placeForm);
-const avatarValdator = new FormValidator (object, editProfile.avatarForm)
+const profileValidator = new FormValidator(object, editProfile.profileForm);
+const placeValidator = new FormValidator(object, editPlace.placeForm);
+const avatarValidator = new FormValidator(object, editProfile.avatarForm)
 
 profileValidator.enableValidation();
 placeValidator.enableValidation();
-avatarValdator.enableValidation();
+avatarValidator.enableValidation();
 
 /* error api*/
 function errorApi(err) {
-  console.log(`Ошибка...: ${err}`);
+  console.log(`Ошибка1...: ${err}`);
 }
 
 /*api userinfo & card*/
-Promise.all([api.getUserInfo(), api.getCards()])
+Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([user, initialCards]) => {
     userInfo.setUserInfo(user);
     userId = user._id;
@@ -80,8 +73,9 @@ formEdit.setEventListeners();
 
 /*button profile & user info*/
 editProfile.profileButton.addEventListener('click', () => {
-  editProfile.titleProfile.value = userInfo.getUserInfo().name;
-  editProfile.subtitleProfile.value = userInfo.getUserInfo().job;
+  editProfile.nameInput.value = userInfo.getUserInfo().profileName;
+  editProfile.jobInput.value = userInfo.getUserInfo().profileJob;
+  profileValidator.resetValidation();
   formEdit.open();
 });
 
@@ -93,7 +87,7 @@ const formEditAvatar = new PopupWithForm({
     api.editAvatar(inputValues)
       .then((inputValues) => {
         userInfo.setAvatarInfo(inputValues);
-        formEdit.close();
+        formEditAvatar.close();
       })
       .catch((err) => {
         errorApi(err);
@@ -107,6 +101,7 @@ formEditAvatar.setEventListeners();
 
 /*button avatar*/
 editProfile.avatarButton.addEventListener('click', () => {
+  avatarValidator.resetValidation();
   formEditAvatar.open();
 });
 
@@ -163,29 +158,30 @@ function createCard(data) {
 }
 
 /*button card*/
-editPlace.placeButton.addEventListener('click', function() {
-  formAdd.open()
+editPlace.placeButton.addEventListener('click', () => {
+  placeValidator.resetValidation();
+  formPlace.open()
 });
 
 /*create new card*/
-const formAdd = new PopupWithForm({
+const formPlace = new PopupWithForm({
   popupSelector: '.popup-place',
   formSubmitHandler: (data) => {
-    formAdd.loadingMessage(true);
+    formPlace.loadingMessage(true);
     api.addNewCard(data)
       .then((data) => {
         section.addItems(createCard(data));
-        formAdd.close();
+        formPlace.close();
       })
       .catch((err) => {
         errorApi(err);
       })
       .finally(() => {
-        formAdd.loadingMessage(false);
+        formPlace.loadingMessage(false);
       });
   }
 })
-formAdd.setEventListeners();
+formPlace.setEventListeners();
 
 /*popup delete*/
 const popupCardDelete = new PopupWithDelete({

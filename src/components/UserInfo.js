@@ -7,16 +7,16 @@ export class UserInfo {
 
   getUserInfo() {
     const userInfo = {
-      name: this._name.textContent,
-      job: this._job.textContent,
-      avatar: this._avatar.src
+      profileName: this._name.textContent,
+      profileJob: this._job.textContent,
+      profileAvatar: this._avatar.src
     }
     return userInfo;
   }
 
   setUserInfo(data) {
     this._name.textContent = data.name;
-    this._job.textContent = data.job;
+    this._job.textContent = data.about;
     this._avatar.src = data.avatar;
   }
 

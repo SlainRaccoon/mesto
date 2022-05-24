@@ -5,10 +5,10 @@ export class Section {
   }
 
   renderItems(data) {
-    data.forEach((item) =>  this._renderer(item));
+    data.forEach(this._renderer);
   }
 
   addItems(element) {
-    this._container.append(element);
+    this._container.prepend(element);
   }
 }
