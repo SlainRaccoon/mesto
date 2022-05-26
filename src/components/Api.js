@@ -20,7 +20,7 @@ export class Api {
     }).then(this._checkResponse);
   }
 
-  editProfile(data) {
+  editUserInfo(data) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -36,7 +36,7 @@ export class Api {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
+        name: data.place,
         link: data.link
       })
     }).then(this._checkResponse);
@@ -56,14 +56,14 @@ export class Api {
     }).then(this._checkResponse);
   }
 
-  delLike(cardId) {
+  removeLike(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers
     }).then(this._checkResponse);
   }
 
-  editAvatar(data) {
+  editUserAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,

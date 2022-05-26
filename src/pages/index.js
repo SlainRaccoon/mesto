@@ -5,7 +5,6 @@ import {
   editProfile,
   editPlace,
   object,
-  zoomImage
 } from "../utils/constants.js";
 
 import { FormValidator } from "../components/FormValidator.js"
@@ -19,16 +18,15 @@ import { api } from "../components/Api";
 
 /*form validation*/
 const profileValidator = new FormValidator(object, editProfile.profileForm);
-const placeValidator = new FormValidator(object, editPlace.placeForm);
-const avatarValidator = new FormValidator(object, editProfile.avatarForm)
-
 profileValidator.enableValidation();
-placeValidator.enableValidation();
+const avatarValidator = new FormValidator(object, editProfile.avatarForm);
 avatarValidator.enableValidation();
+const placeValidator = new FormValidator(object, editPlace.placeForm);
+placeValidator.enableValidation();
 
 /* error api*/
 function errorApi(err) {
-  console.log(`Ошибка1...: ${err}`);
+  console.log(`Ошибка...: ${err}`);
 }
 
 /*api userinfo & card*/
@@ -37,9 +35,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     userInfo.setUserInfo(user);
     userId = user._id;
     section.renderItems(initialCards);
-
-    console.log(user);
-    console.log(initialCards);
   })
   .catch((err) => {
     errorApi(err);
@@ -47,16 +42,16 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
 /*create user info*/
 const userInfo = new UserInfo({
-  profileName: '.profile__name',
-  profileJob: '.profile__subtitle',
-  profileAvatar: '.profile__image'
+  username: '.profile__name',
+  userjob: '.profile__subtitle',
+  editAvatar: '.profile__image'
 });
 
 const formEdit = new PopupWithForm({
   popupSelector: '.popup-profile',
   formSubmitHandler: (inputValues) => {
     formEdit.loadingMessage(true);
-    api.editProfile(inputValues)
+    api.editUserInfo(inputValues)
       .then((inputValues) => {
         userInfo.setUserInfo(inputValues);
         formEdit.close();
@@ -73,10 +68,36 @@ formEdit.setEventListeners();
 
 /*button profile & user info*/
 editProfile.profileButton.addEventListener('click', () => {
-  editProfile.nameInput.value = userInfo.getUserInfo().profileName;
-  editProfile.jobInput.value = userInfo.getUserInfo().profileJob;
+  editProfile.nameInput.value = userInfo.getUserInfo().username;
+  editProfile.jobInput.value = userInfo.getUserInfo().userjob;
   profileValidator.resetValidation();
   formEdit.open();
+});
+
+/*create new card*/
+const formPlace = new PopupWithForm({
+  popupSelector: '.popup-place',
+  formSubmitHandler: (data) => {
+    formPlace.loadingMessage(true);
+    api.addNewCard(data)
+      .then((data) => {
+        section.addItems(createCard(data));
+        formPlace.close();
+      })
+      .catch((err) => {
+        errorApi(err);
+      })
+      .finally(() => {
+        formPlace.loadingMessage(false);
+      });
+  }
+})
+formPlace.setEventListeners();
+
+/*button card*/
+editPlace.placeButton.addEventListener('click', () => {
+  placeValidator.resetValidation();
+  formPlace.open()
 });
 
 /*create avatar*/
@@ -84,7 +105,7 @@ const formEditAvatar = new PopupWithForm({
   popupSelector: '.popup-avatar',
   formSubmitHandler: (inputValues) => {
     formEditAvatar.loadingMessage(true);
-    api.editAvatar(inputValues)
+    api.editUserAvatar(inputValues)
       .then((inputValues) => {
         userInfo.setAvatarInfo(inputValues);
         formEditAvatar.close();
@@ -108,6 +129,7 @@ editProfile.avatarButton.addEventListener('click', () => {
 /*create card*/
 let userId;
 const gallery = '.gallery';
+
 const section = new Section({
   renderer: (card) => {
     section.addItems(createCard(card));
@@ -123,9 +145,9 @@ function createCard(data) {
       popupCardDelete.submitDelete(() => {
         api.deleteCard(cardId)
           .then(() => {
+            card.removeCard();
             popupCardDelete.close();
-            card.deleteCard();
-            console.log(cardId)
+            console.log(cardId);
           })
           .catch((err) => {
             errorApi(err);
@@ -133,7 +155,7 @@ function createCard(data) {
       }),
         popupCardDelete.open();
     },
-    handleCardLikeAdd: (cardId) => {
+    handleLikeAdd: (cardId) => {
       api.addLike(cardId)
         .then((data) => {
           card.handleLike(data);
@@ -142,8 +164,8 @@ function createCard(data) {
           errorApi(err);
         })
     },
-    handleCardLikeRemove: (cardId) => {
-      api.delLike(cardId)
+    handleLikeRemove: (cardId) => {
+      api.removeLike(cardId)
         .then((data) => {
           card.handleLike(data);
         })
@@ -156,32 +178,6 @@ function createCard(data) {
   const cardElement = card.generateCard();
   return cardElement;
 }
-
-/*button card*/
-editPlace.placeButton.addEventListener('click', () => {
-  placeValidator.resetValidation();
-  formPlace.open()
-});
-
-/*create new card*/
-const formPlace = new PopupWithForm({
-  popupSelector: '.popup-place',
-  formSubmitHandler: (data) => {
-    formPlace.loadingMessage(true);
-    api.addNewCard(data)
-      .then((data) => {
-        section.addItems(createCard(data));
-        formPlace.close();
-      })
-      .catch((err) => {
-        errorApi(err);
-      })
-      .finally(() => {
-        formPlace.loadingMessage(false);
-      });
-  }
-})
-formPlace.setEventListeners();
 
 /*popup delete*/
 const popupCardDelete = new PopupWithDelete({
